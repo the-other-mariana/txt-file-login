@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var tools = require("./fs-tools.js");
+
 /* 1. GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Blockchain Login', success: req.session.success, errors: req.session.errors });
@@ -20,6 +22,7 @@ router.post('/login', function(req, res, next){
 
   //check validity with validator pckg function
   //req.check('address', 'invalid email address').isEmail(); // email has to match name
+  var valid = tools.check({ file: "accounts.txt", account: req.body.address });
   req.check('password', 'Password is invalid').isLength({min: 4}).equals(req.body.confirmPassword);
 
   var errors = req.validationErrors();
@@ -27,9 +30,11 @@ router.post('/login', function(req, res, next){
     req.session.errors = errors;
     req.session.success = false;
   }else{
-    req.session.success = true;
-    var test = req.body.address;
-    console.log("email is: " + test);
+    if(valid == true){
+      req.session.success = true;
+    }
+
+    console.log("email is: " + req.body.address);
   }
   // following action: this will call 1.
   res.redirect('/');
@@ -42,7 +47,16 @@ router.post('/register', function(req, res, next){
 });
 
 router.post('/register/submit-account', function(req, res, next){
-  res.redirect('/');
+  var inputAddress = req.body.newAddress;
+  var accounts = "";
+
+  if (inputAddress != ""){
+    tools.register({ file: "accounts.txt", data: inputAddress });
+    res.redirect('/');
+  }else{
+    res.redirect("/register");
+  }
+  
 });
 
 module.exports = router;
