@@ -14,7 +14,8 @@
       </ul>
     </section>
   {{/if}}
-  <form action = "/submit" method = "post">
+  
+  <form>
     <div class = "input">
       <label for = "email" style = "display: block;"> E-mail </label>
       <input type = "text" id = "email" name = "email">
@@ -27,7 +28,11 @@
       <label for = "confirmPassword" style = "display: block;"> Confirm Password </label>
       <input type = "password" id = "confirmPassword" name = "confirmPassword">
     </div>
-    <button type = "submit">Sign up</button>
+    <button type = "submit" class = "common-button" formaction="/submit" formmethod="post">Sign up</button>
+    <button type = "submit" class = "common-button" formaction="/register" formmethod="post">Register</button>
   </form>
+
+  
+  
 {{/if}}
 

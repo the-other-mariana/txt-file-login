@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* 1. GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Form Validation', success: req.session.success, errors: req.session.errors });
+  res.render('index', { title: 'Blockchain Login', success: req.session.success, errors: req.session.errors });
   req.session.errors = null;
 });
 
@@ -14,6 +14,10 @@ router.get('/users', function(req, res, next) {
 // goes here if we type localhost:8000/users/detail
 router.get('/users/detail', function(req, res, next) {
   res.send('detail');
+});
+
+router.post('/register', function(req, res, next){
+  res.send('register user');
 });
 
 router.post('/submit', function(req, res, next){
@@ -35,5 +39,6 @@ router.post('/submit', function(req, res, next){
   res.redirect('/');
 
 });
+
 
 module.exports = router;
