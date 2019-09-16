@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- double handlebars means the output is plain text in handlebars -->
+  <title>{{ title }}</title>
+  <link rel = "stylesheet" href = "/stylesheets/style.css">
+</head>
+<body>
+  <!-- triple handlebars means the output is html text -->
+  <!-- we defined this file as main layout in app.js, so hbs will look for body word here -->
+  {{{ body }}}
+</body>
+</html>
