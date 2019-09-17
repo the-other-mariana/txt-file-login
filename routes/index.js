@@ -16,7 +16,7 @@ router.get('/users', function(req, res, next) {
 
 // goes here if we type localhost:8000/users/detail
 router.get('/users/detail', function(req, res, next) {
-  res.send('details');
+  res.send('detailss');
 });
 
 router.post('/login', function(req, res, next){
